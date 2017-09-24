@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    body,
+    html,
+    #allmap {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+      font-family: "微软雅黑";
+    }
+  </style>
+  <!-- 申请一个秘钥 -->
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZuSbFihUuxRyEfO7ZqL8rGXKPRVuDmQ8"></script>
+  <title>添加动画标注点</title>
+</head>
+
+<body>
+  <h2>获取位置信息</h2>
+  <input type="button" value='获取位置信息'>
+  <div id="allmap"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+  // 点击按钮 获取经纬度 配合 百度地图 完成位置显示
+  document.querySelector('input').onclick = function () {
+    window.navigator.geolocation.getCurrentPosition(function (position) {
+      // 百度地图API功能
+      var map = new BMap.Map("allmap");
+      // var point = new BMap.Point(116.404, 39.915);
+
+      // var point = new BMap.Point(113.91507781324957, 22.581397974343815);
+      var point = new BMap.Point(position.coords.longitude,position.coords.latitude);
+      map.centerAndZoom(point, 15);
+      var marker = new BMap.Marker(point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    })
+  }
+</script>
+<!--
+  1.电脑上获取经纬度 不太准确
+  2.手机上获取会准确一些
+  3.我们只是能够获取经纬度而已
+  4.如果要变为 地图 展现给用户 需要配合一些 第三方的服务 比如 百度地图
+  5.html5的定位 跟百度地图结合起来 就可以获取位置 并且展现给用户了
+  6.如果要在手机上打开这个页面
+    1.low的方法 打开手机,打开电脑 吧文件拷贝到手机上 打开
+    2.登陆qq 手机登陆qq 电脑上 发送到我们的手机qq 微信
+    3.把页面上传到 自己的服务器 手机访问服务器地址 即可打开页面
+  7.推荐一个免费的 云空间
+    如果要把东西放到网上
+      1.域名 很便宜 根据买的名字不同 价钱不等 jay.com  memedaWestFlower.com
+      2.需要有一台能够在互联网上访问到的电脑(服务器)
+    新浪云
+      微博账号即可登录
+      送我们一个域名
+      如果访问量很小 免费 访问量大了 要云豆 云豆要钱
+      「新浪云福利」1000云豆免费领！低成本、免运维、灵活、安全稳定，轻松应对业务爆发式增长，一起来用吧！
+注册地址：http://t.cn/RaWkBEB  我的邀请链接
+-->

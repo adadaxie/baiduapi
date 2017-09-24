@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <h2>获取位置信息</h2>
+  <input type="button" value='获取位置信息'>
+
+</body>
+
+</html>
+<script type="text/javascript">
+  /*
+      1.点击时 获取位置信息 并 打印出来
+    */
+  document.querySelector('input').onclick = function () {
+    // 通过window对象的 属性的 方法获取即可
+    // webstrom没有提示哦
+    // 获取 位置信息 是一个比较耗费时间的操作 提供了一个回调函数
+    // 谷歌在国内被 墙 了 获取位置信息 可能获取不到 或者等了很久 才获取到
+    // latitude 维度
+    // longitude 经度
+    // html5的定位 仅仅只能获取经纬度
+    // 如果想要 变为地图 让用户看到 结合一些地图的 api来使用 百度地图
+
+    /*
+        定位的方式
+          基站定位
+            使用的网络 是从 某个附近的基站 发给我们的
+          GPS定位
+            手机一般是GPS定位
+    */
+    window.navigator.geolocation.getCurrentPosition(function (position) {
+      console.log(position);
+      alert('亲爱的用户,你所处的位置 经度是:'+position.coords.longitude+'所处的维度是:'+position.coords.latitude)
+    })
+  }
+</script>
